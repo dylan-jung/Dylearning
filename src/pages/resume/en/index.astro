@@ -1,0 +1,22 @@
+---
+// General-purpose English resume. Data in ./_data.ts, template in components/resume/ResumeBody.astro.
+import ResumeBody from "../../../components/resume/ResumeBody.astro";
+import * as d from "./_data";
+
+const summary =
+	"Works across model, data, and compute to build LLM agents: produces large-scale training data, serves and scales models, and verifies every improvement by experiment. Founder background; moves quickly into new domains and stands up the data and infrastructure they need.";
+---
+<ResumeBody
+  lang="en"
+  header={d.header}
+  summary={summary}
+  sections={[
+	{ title: "Work Experience", items: d.experience },
+	{ title: "Projects", items: d.projects },
+	{ title: "Education", items: d.education },
+	{ title: "Activities", items: d.activities }
+]}
+  skills={d.skills}
+  awards={d.awards}
+  labels={{ summary: "Summary", skills: "Skills", awards: "Awards & Certifications", print: "Print to PDF" }}
+  />

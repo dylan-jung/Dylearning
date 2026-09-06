@@ -1,0 +1,117 @@
+---
+// Resume template shared by all /resume/en/* and /resume/ko/* pages. Data comes in as props.
+import ResumeLayout from "../../layouts/ResumeLayout.astro";
+
+interface Props {
+	lang: "en" | "ko";
+	header: any;
+	summary: string;
+	sections: { title: string; items: any[] }[];
+	skills: string[];
+	awards: string[];
+	labels: { summary: string; skills: string; awards: string; print: string };
+}
+const { lang, header, summary, sections, skills, awards, labels } = Astro.props;
+---
+
+
+<ResumeLayout title={`${header.name} | Resume`} description={`${header.name} resume`}>
+  <div class="flex justify-end mb-4 no-print">
+    <button onclick="window.print()" class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 text-sm font-medium cursor-pointer">{labels.print}</button>
+  </div>
+
+  <div class:list={["resume", lang]}>
+    <header>
+      <div class="flex justify-between items-end border-b-2 border-black pb-0.5">
+        <h1>{header.name}</h1>
+        <span><a href={`mailto:${header.email}`}>{header.email}</a></span>
+      </div>
+      <p class="text-center mt-1">
+        {header.location} · {header.phone} · <a href={`https://${header.github}`}>{header.github}</a> · <a href={`https://${header.linkedin}`}>{header.linkedin}</a>
+      </p>
+    </header>
+
+    <section>
+      <h2>{labels.summary}</h2>
+      <p>{summary}</p>
+    </section>
+
+    {sections.map((s) => (
+      <section>
+        <h2>{s.title}</h2>
+        {s.items.map((it) => (
+          <div class="entry">
+            <div class="flex justify-between items-baseline">
+              <span><b>{it.org}</b>, {it.loc}</span>
+              {"right" in it ? <b class="shrink-0 whitespace-nowrap">{it.right}</b> : <span class="shrink-0 whitespace-nowrap pl-4">{it.date}</span>}
+            </div>
+            <div class="flex justify-between items-baseline">
+              <i>{it.role}</i>
+              {"right" in it && <span class="shrink-0 whitespace-nowrap pl-4">{it.date}</span>}
+            </div>
+            {"intro" in it && <div>{it.intro}</div>}
+            {"groups" in it && it.groups.map((g) => (
+              <div class="group">
+                <div><span class="ptitle">{g.title}</span>, <i>{g.desc}</i></div>
+                <ul>
+                  {g.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              </div>
+            ))}
+            {"bullets" in it && (
+              <ul>
+                {it.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            )}
+          </div>
+        ))}
+      </section>
+    ))}
+
+    <section>
+      <h2>{labels.skills}</h2>
+      <ul>
+        {skills.map((s) => <li>{s}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2>{labels.awards}</h2>
+      <ul>
+        {awards.map((a) => <li>{a}</li>)}
+      </ul>
+    </section>
+  </div>
+</ResumeLayout>
+
+<style>
+  .resume {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 10.5pt;
+    line-height: 1.3;
+    color: #000;
+  }
+  h1 {
+    font-size: 20pt;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  h2 {
+    font-size: 11.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid #000;
+    margin: 0.9em 0 0.3em;
+    page-break-after: avoid;
+  }
+  .entry { margin-bottom: 0.5em; }
+  .group, li { break-inside: avoid; }
+  .ko { font-family: "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif; }
+  .ko h2 { letter-spacing: 0.15em; }
+  .group { margin: 0.25em 0 0 1.2em; }
+  .ptitle { font-weight: 700; font-size: 0.95em; letter-spacing: 0.04em; text-transform: uppercase; }
+  ul { list-style: disc; margin-left: 1.2em; }
+  li { padding-left: 0.1em; }
+  a { color: inherit; }
+</style>

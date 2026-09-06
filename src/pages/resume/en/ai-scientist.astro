@@ -1,0 +1,22 @@
+---
+// English resume, AI Scientist framing. Same data as /resume/en, summary differs.
+import ResumeBody from "../../../components/resume/ResumeBody.astro";
+import * as d from "./_data";
+
+const summary =
+	"Specializes in LLM agents on both the model side (post-training data, evaluation) and the compute side (serving efficiency, execution infrastructure at scale): finds the bottleneck wherever it moves, from build I/O to KV cache to idle GPUs, and gets more out of the same hardware. Interested in algorithm-hardware co-design: designing model architectures around memory, bandwidth, and communication limits from the start, and aiming at research that designs models and compute together.";
+---
+<ResumeBody
+  lang="en"
+  header={d.header}
+  summary={summary}
+  sections={[
+	{ title: "Work Experience", items: d.experience },
+	{ title: "Projects", items: d.projects },
+	{ title: "Education", items: d.education },
+	{ title: "Activities", items: d.activities }
+]}
+  skills={d.skills}
+  awards={d.awards}
+  labels={{ summary: "Summary", skills: "Skills", awards: "Awards & Certifications", print: "Print to PDF" }}
+  />
