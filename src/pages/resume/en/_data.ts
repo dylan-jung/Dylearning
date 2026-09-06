@@ -1,4 +1,5 @@
 // English resume data. Shared by /resume/en and /resume/en/ai-scientist.
+// 2026-09-06 LG AI Research AI Scientist 전환 면접 제출본(/resume/en/ai-scientist)이 이 파일을 쓰므로 동결. 수정은 새 경로로 복사해서.
 export const header = {
 	name: "Minhyeok Jung",
 	email: "dylanjungko@gmail.com",
