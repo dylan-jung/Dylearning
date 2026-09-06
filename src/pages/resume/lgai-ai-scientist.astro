@@ -1,0 +1,192 @@
+---
+// LG AI연구원 AI Scientist용 한글 레쥬메. /resume(기본) 형식, 내용은 /resume/en/ai-scientist와 1:1 대응.
+// 협업 표기: 샌드박스 클러스터 구축(동료 협업), 2단 Judge(동료와 설계), MTP FA3 패치(인프라팀).
+import ResumeLayout from "../../layouts/ResumeLayout.astro";
+import ResumeHeader from "../../components/resume/ResumeHeader.astro";
+import ResumeSection from "../../components/resume/ResumeSection.astro";
+
+const header = {
+	name: "정민혁",
+	role: "AI Scientist",
+	email: "dylanjungko@gmail.com",
+	phone: "010-4536-6741",
+	github: "https://github.com/dylan-jung",
+	linkedin: "https://www.linkedin.com/in/dylan-jung-ko/"
+};
+
+const experience = [
+	{
+		company: "LG AI Research",
+		role: "NLP Research Engineer (Language Lab · Code & Analysis Tech Cell · Internship)",
+		date: "2026.02 ~ 현재",
+		summary: "계열사에 제공하는 코딩 에이전트 **EXAONE CLI**와 독자 파운데이션 모델 **K-EXAONE 2.0의 Agentic Workflow post-training** 담당",
+		groups: [
+			{
+				title: "1. EXAONE CLI (계열사 제공 코딩 에이전트)",
+				bullets: [
+					"롤아웃 → 검증 → SFT 변환을 Dagster 파이프라인 하나로 통합해 검증된 궤적 **10k+** 투입, 하네스를 개조해 Subagent·Compaction·Skills·멀티턴 트래잭터리까지 확보. 유휴 GPU로 pass@k 재시도해 수율 **68.5% → 93.2%**, 2단 Judge(동료와 설계)로 판정 비용 **1/3**",
+					"236B 통합 서빙의 context 65K 한계를 진단해 소형 모델 분리 서빙을 제안, 후보 3종을 측정해 EXAONE 30B MoE를 학습 베이스로 확정. context **65K → 256K**, 출력 **100 → 175 tok/s**. 128K 배포는 KV 캐시 미스 시 첫 토큰 60초+ 문제를 측정해 sticky 라우팅을 필수 요건으로 적용",
+					"벤치마크를 Harbor Task로 표준화하고 Dagster로 동일 조건 실행해 일주일 걸리던 평가를 학습 병목에서 제거, **20회 이상** 수행",
+					"사내망 안의 학습 중인 모델에 실행기를 붙이기 위해 샌드박스 클러스터를 사내 제한망으로 이식. IP 부족은 네트워크 오버레이로, 인증서 오류는 계층별 신뢰 설정으로, 외부 의존은 이미지 미러링으로 풀어 agentic RL 롤아웃과 평가 사이클 확보"
+				]
+			},
+			{
+				title: "2. K-EXAONE 2.0 (파운데이션 모델 에이전트 포스트트레이닝)",
+				bullets: [
+					"공개 데이터 없는 담당 도메인 4개에 검증 가능한 SFT/RL 태스크 **44k** 합성, 담당 도메인 Terminal-Bench 2.1 **14.3 → 39.3**",
+					"**8,000+** 동시 롤아웃 클러스터(EKS·Daytona)를 동료와 1개월 내 구축, 가동 후 빌드 병목을 사전 빌드 서비스로 분리해 대기 **P95 93분 → 4.4분**, 일 비용 **1,500만 → 200만 원**"
+				]
+			}
+		]
+	},
+	{
+		company: "씨그로",
+		role: "데이터 엔지니어 & 서버 개발",
+		date: "2024.05 ~ 2024.09",
+		summary: "이커머스 셀러용 멀티채널 분석 대시보드의 데이터 파이프라인·백엔드 개발·운영",
+		bullets: [
+			"Prefect 기반 **50개 이상** 판매·광고 채널 크롤링·ETL 파이프라인 개발·운영, 차단 대응을 위한 IP 변경, 프록시 SaaS 도입, 네트워크 구성",
+			"분석 대시보드 백엔드 개발, 실시간 집계를 Aggregate Table + 증분 갱신으로 대체해 조회 응답 **p99 10초→1초**, 이탈 위기의 **대형 고객사 2건 유지**",
+			"알림톡 발송, 채널별 데이터 정합성 관리 등 서비스 운영·유지보수",
+			"잘못 설정된 join 키 등으로 어긋난 데이터를 진단·복구하여 집계 정합성 확보",
+			"Kubernetes 크롤링 Job의 OOMKilled 무한 재시도 장애를 restartPolicy로 차단하고 cgroup 계측으로 메모리 재산정, Loki·Grafana 관측·알림 체계 구축"
+		]
+	},
+	{
+		company: "리베이스 — 모인나",
+		role: "서버 개발 (Founder)",
+		date: "2023.11 ~ 2024.02",
+		summary: "창업 프로젝트로 기획·개발·배포까지 직접 만든 퍼포먼스 마케터용 광고 레퍼런스(텍스트-이미지) 검색 서비스 (DAU 100+)",
+		bullets: [
+			"광고 레퍼런스(이미지·카피) 검색 서비스의 백엔드와 벡터 검색 개발",
+			"30K+ 이미지·텍스트 임베딩 생성·인덱싱 파이프라인 구축",
+			"벡터 검색을 단일 DB(pgvector)에서 전용 Faiss IVFFLAT 인메모리 서버로 분리, 검색 응답 **3.2초→0.9초** 및 이탈률 **21%→6%** 개선",
+			"GCP Cloud Run 기반 CPU 수평 확장 및 무중단 인덱스 교체 구조 구현",
+			"SEO용 서버 렌더링 페이지(광고 레퍼런스)와 클라이언트 렌더링 검색 화면 분리"
+		]
+	},
+	{
+		company: "리베이스 — 지미",
+		role: "풀스택 개발 (Founder)",
+		date: "2022.06 ~ 2023.11",
+		summary: "창업 프로젝트로 기획·개발·운영까지 직접 만든 환경 리워드 앱 (누적 다운로드 2.7만, DAU 1,000+)",
+		bullets: [
+			"환경 리워드 앱을 기획부터 풀스택 개발·운영까지 직접 만들고 4인 팀 리딩, 6개월간 26회 배포",
+			"NestJS 계층형 아키텍처 설계 및 미션·포인트·피드 등 핵심 기능 개발, 피드·그룹 미션 등 기능을 **A/B 테스트로 결정**해 D+1 리텐션 **13%→30%**",
+			"커뮤니티 상호평가로 운영(검수) 자동화 및 어뷰징 방어",
+			"Docker·Cloud Run 무중단 배포 CI/CD 구축, 배포 시간 **30분→3분**"
+		]
+	}
+];
+
+const projects = [
+	{
+		company: "Attenz (개인 프로젝트)",
+		role: "AI 영상 편집",
+		date: "2025.04 ~ 2025.05",
+		summary: "자연어로 긴 영상을 편집하는 AI",
+		bullets: ["LangGraph ReAct 에이전트와 시멘틱 서치로 자연어 영상 편집 AI 설계", "장시간 영상 인덱싱을 비동기로 처리하는 구조 설계"]
+	}
+];
+
+const education = [{ school: "서울시립대학교", degree: "컴퓨터과학전공 학사 (GPA 4.12 / 4.5) · 우등 졸업(총장상)", date: "2019.03 ~ 2026.08" }];
+
+const awards = [
+	"마이데이터 아이디어 공모전 · 과학기술정보통신부 장관상 (2023.08)",
+	"소프트웨어 마에스트로 13기 우수자 · 과학기술정보통신부 장관상 (2023.06)",
+	"TOPCIT 우수 성적상 · Level 4 (2022.12)",
+	"공군 사이버전사 경연대회 · 대령급 상장 (2021)",
+	"AWS Certified AI Practitioner (2025.10)"
+];
+
+const parseInline = (text: string) =>
+	text
+		.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-blue-600 hover:underline">$1</a>')
+		.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+---
+
+<ResumeLayout title={`${header.name} | AI Scientist`} description={`${header.name} 이력서 AI Scientist`}>
+  <div class="flex justify-end mb-4 no-print">
+    <button onclick="window.print()" class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors text-sm font-medium cursor-pointer">
+      Print to PDF
+    </button>
+  </div>
+
+  <ResumeHeader {...header} />
+
+  {[
+    { title: "Experience", items: experience },
+    { title: "Projects", items: projects },
+  ].map((section) => (
+    <ResumeSection title={section.title}>
+      {section.items.map((exp) => (
+        <div class="mb-4 break-inside-avoid">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+            <div>
+              <div class="font-bold text-gray-900">{exp.company}</div>
+              <div class="text-sm text-gray-600">{exp.role}</div>
+            </div>
+            <span class="text-sm text-gray-500 shrink-0">{exp.date}</span>
+          </div>
+          {exp.summary && <p class="text-sm text-gray-800 font-medium mt-0.5" set:html={parseInline(exp.summary)}></p>}
+          {exp.groups ? (
+            exp.groups.map((g) => (
+              <div class="mt-2">
+                <div class="text-sm font-medium text-gray-900">
+                  {g.title}
+                  {g.links?.map((l) => (
+                    <a href={l.url} target="_blank" rel="noopener" class="ml-2 text-xs font-medium text-blue-600 hover:underline">{l.text} ↗</a>
+                  ))}
+                </div>
+                <ul class="list-disc list-outside ml-5 mt-1 space-y-1 text-sm text-gray-700 leading-relaxed">
+                  {g.bullets.map((bullet) => (
+                    <li set:html={parseInline(bullet)}></li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          ) : (
+            <ul class="list-disc list-outside ml-5 mt-1.5 space-y-1 text-sm text-gray-700 leading-relaxed">
+              {exp.bullets.map((bullet) => (
+                <li set:html={parseInline(bullet)}></li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </ResumeSection>
+  ))}
+
+  <ResumeSection title="Education">
+    <ul class="list-disc list-outside ml-5 text-sm text-gray-700 leading-relaxed space-y-1">
+      {education.map((edu) => <li>{edu.school} · {edu.degree} ({edu.date})</li>)}
+    </ul>
+  </ResumeSection>
+
+  <ResumeSection title="Activities">
+    <ul class="list-disc list-outside ml-5 text-sm text-gray-700 leading-relaxed space-y-1">
+      <li><span class="font-medium text-gray-900">창업·스타트업</span>: 예비창업패키지 선정·정부지원금 수령, 한양대 캠퍼스타운 입주 (리베이스)</li>
+      <li><span class="font-medium text-gray-900">대외활동</span>: 소프트웨어 마에스트로 13기 (팀 리더·상위 8%), 시립대 최초 교내 해커톤 ‘플랑크톤’ 주최 (60여 명), 오픈소스 기여 모임 10기 (Spring AI 기여), 클라우드 클럽 9기 (GPU·아키텍처·리눅스·장애 대응 스터디)</li>
+      <li><span class="font-medium text-gray-900">병역</span>: 공군 사이버작전센터 (정보보호상황병)</li>
+    </ul>
+  </ResumeSection>
+
+  <ResumeSection title="Awards">
+    <ul class="list-disc list-outside ml-5 text-sm text-gray-700 leading-relaxed space-y-1">
+      {awards.map((a) => <li>{a}</li>)}
+    </ul>
+  </ResumeSection>
+</ResumeLayout>
+
+<style>
+  @media print {
+    @page { margin: 12mm 14mm; }
+    li { break-inside: avoid; }
+    :global(header.mb-8) { margin-bottom: 0.75rem !important; padding-bottom: 0.5rem !important; }
+    :global(section.mb-8) { margin-bottom: 0.9rem !important; }
+    :global(section.mb-8 > h2) { margin-bottom: 0.4rem !important; }
+    :global(.mb-4) { margin-bottom: 0.6rem !important; }
+    :global(.space-y-1 > * + *) { margin-top: 0.15rem !important; }
+    :global(.leading-relaxed) { line-height: 1.45 !important; }
+  }
+</style>
