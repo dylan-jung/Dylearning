@@ -32,6 +32,7 @@ git checkout submit/<태그명> -- src/pages/resume/<파일> # 그 시점으로 
 - `submit/tossbank-mlops-20260816` — 토스뱅크 ML Engineer(ML/LLM Ops), `/resume/mlops` (33fa516)
 - `submit/lgai-mlops-20260823` — LG AI Platform&Infra MLOps Engineer, `/resume/mlops2` (실제 제출 표기는 8/19, 정정 반영 시점에 박제)
 - `submit/lgai-ai-scientist-en-20260906` — LG AI Research AI Scientist 전환 면접, `/resume/en/ai-scientist` (영문). 본문 데이터 `en/_data.ts`·템플릿 `ResumeBody.astro` 공유이므로 함께 동결
+- `submit/lgai-ai-scientist-ko-20260906` — LG AI Research AI Scientist 전환 면접, `/resume/lgai-ai-scientist` (한글)
 
 ## 지원 건 ↔ 이력서 ↔ 리뷰어 에이전트 매핑
 
@@ -41,7 +42,7 @@ git checkout submit/<태그명> -- src/pages/resume/<파일> # 그 시점으로 
 | 토스뱅크 ML Platform Team ML Engineer(ML/LLM Ops) | `/resume/mlops` (동결) | `tossbank-ml-platform-reviewer` | `submit/tossbank-mlops-20260816` |
 | LG AI연구원 Platform&Infra MLOps Engineer | `/resume/mlops2` (동결) | `lgai-mlops-reviewer` | `submit/lgai-mlops-20260823` |
 | LG AI Research AI Scientist 전환 면접 (영문) | `/resume/en/ai-scientist` (동결) | (없음) | `submit/lgai-ai-scientist-en-20260906` |
-| LG AI Research AI Scientist 전환 면접 (한글) | `/resume/lgai-ai-scientist` | (없음) | (미제출) |
+| LG AI Research AI Scientist 전환 면접 (한글) | `/resume/lgai-ai-scientist` (동결) | (없음) | `submit/lgai-ai-scientist-ko-20260906` |
 
 리뷰어 에이전트는 `.claude/agents/`에 있고, 해당 JD의 채용 담당자 페르소나로 이력서를 채점(5점×8 루브릭)한다. 새 지원 건이 생기면 JD를 받아 같은 형식의 리뷰어 에이전트를 만들고 이 표에 추가한다.
 
