@@ -23,7 +23,7 @@ export const experience = [
 		org: "LG AI Research",
 		loc: "Seoul, South Korea",
 		role: "NLP Research Engineer Intern, Language Lab, Code & Analysis Tech Cell",
-		date: "Feb 2026 – Nov 2026",
+		date: "Feb 2026 – Present",
 		intro: "Post-training data, serving, and infrastructure across two projects:",
 		groups: [
 			{
@@ -33,7 +33,7 @@ export const experience = [
 					"Built the SFT data pipeline on Dagster producing 10K+ verified agent trajectories; 1.4K sessions in 5 days, unattended",
 					"Raised task yield 68.5% → 93.2% with automatic pass@k retries; cut data production cost 3× via a two-stage LLM judge",
 					"Modified the agent harness to force and record sub-agent, context-compaction, skill-use, and multi-turn behavior, so the deployed model actually uses them",
-					"Proposed and validated moving from a shared 236B model to a dedicated 30B MoE on vLLM: context 65K → 256K, 100 → 175 tok/s; adopted as training base",
+					"Proposed and validated moving from a shared 236B model to a dedicated EXAONE 30B MoE on vLLM: context 65K → 256K, 100 → 175 tok/s; adopted as training base",
 					"Built a Harbor + Dagster evaluation pipeline for reproducible checkpoint comparison; 20+ runs"
 				]
 			},
